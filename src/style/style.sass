@@ -1,0 +1,171 @@
+// global
+@import 'bootstrap'
+@import 'assets'
+
+// local
+@import 'vars'
+@import 'animations'
+@import 'loader'
+
+.app
+  height: 100vh
+  position: relative
+
+.loader
+  background-color: $bg-color
+  color: white
+  height: 100%
+  font-weight: 700
+  font-family: 'Fira Mono', monospace
+  *::before,
+  *::after
+    margin: 0
+    padding: 0
+    border: 0
+    outline: 0
+    box-sizing: border-box
+    user-select: none
+
+  a.switcher
+    display: block
+    position: fixed
+    text-decoration: none
+    z-index: 9
+    right: 1rem
+    bottom: 1rem
+    width: 1rem
+    height: 1rem
+    background-color: transparent
+    border: 2px solid $txt-color
+    border-radius: 50%
+    opacity: .15
+    transition: opacity .150s
+    &:hover
+      opacity: 1
+    &::before
+      display: block
+      content: ''
+      position: absolute
+      border-radius: 0.25rem
+      width: 2px
+      height: .25rem
+      background-color: $txt-color
+      top: 0
+      left: 5px
+  .screen
+    position: relative
+    z-index: 1
+    width: 100%
+    height: 100%
+    overflow: hidden
+
+  // треугольнички
+  .figure
+    display: block
+    position: absolute
+    z-index: 1
+    width: 0
+    height: 0
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    margin: auto
+    border-top: 200px solid $txt-color
+    border-right: 100px solid transparent
+    border-left: 100px solid transparent
+    border-bottom: 0 solid transparent
+    &::before
+      display: block
+      content: ''
+      position: absolute
+      z-index: 8
+      width: 0
+      height: 0
+      top: -194px
+      left: -194px
+      margin: auto
+      border-top: 180px solid $bg-color
+      border-right: 90px solid transparent
+      border-left: 90px solid transparent
+      border-bottom: 0 solid transparent
+
+  // маски для треугольничков
+  .figure-mask
+    display: block
+    position: absolute
+    z-index: 8
+    width: 0
+    height: 0
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    margin: auto
+    border-top: 200px solid transparent
+    border-right: 100px solid $bg-color
+    border-left: 100px solid $bg-color
+    border-bottom: 0 solid transparent
+
+  .clock
+    display: block
+    position: absolute
+    z-index: 8
+    width: 720px
+    height: 128px
+    text-align: center
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    margin: auto
+    cursor: default
+    .time
+      display: block
+      position: relative
+      font-size: 128px
+      line-height: 1
+    &.is-off
+      animation: is-off 2s linear infinite !important
+
+  .glitch
+    &:before
+      position: absolute
+      z-index: 9
+      content: ''
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+      animation: bg-move 2s linear infinite
+      background-size: 100% 0.5rem
+      background-image: linear-gradient(0, rgba(255,255,255,.05) 10%, transparent 10%, transparent 50%, rgba(255,255,255,.05) 50%, rgba(255,255,255,.05) 60%, transparent 60%, transparent)
+    .figure,
+    .figure-mask
+      transform: skewX(0deg) scaleY(1)
+      animation: tr-bag 4s linear infinite
+    .clock
+      transform: skewX(0deg) scaleY(1)
+      animation: clock-bag 4s linear infinite
+      .time
+        &::before,
+        &::after
+          display: block
+          content: attr(data-time)
+          position: absolute
+          // z-index: 8
+          top: 0
+          color: $txt-color
+          background-color: $bg-color
+          overflow: hidden
+          width: 720px
+          height: 128px
+          clip: rect(0, 900px, 0, 0)
+        &::before
+          left: -($offset-c2) + px
+          text-shadow: ($lay-c2) + px 0 $color-c2
+          animation: c2 1s linear infinite alternate-reverse
+        &::after
+          left: ($offset-c1) + px
+          text-shadow: -($lay-c1) + px 0 $color-c1
+          animation: c1 2s linear infinite alternate-reverse

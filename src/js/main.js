@@ -9,13 +9,11 @@ window.jQuery = $;
 // window.Tether = Tether;
 // require('../../node_modules/bootstrap/dist/js/bootstrap');
 // let Handlebars = require('handlebars');
+window.onload = function() {
+  console.log("Loaded");
+}
 
 console.log("Basic Project");
-
-let img = () => {
-  return 42;
-};
-console.log(img());
 
 let importedModule = require('./module');
 console.dir( importedModule );

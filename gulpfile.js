@@ -70,7 +70,7 @@ gulp.task('compressjs', ['js'], function() {
 });
 
 gulp.task('sass', function(){
-  return gulp.src('src/style/style.scss')
+  return gulp.src('src/style/style.sass')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoPrefixer({
       browsers: ['last 2 versions', '> 1%', 'IE 8'],

@@ -1,7 +1,11 @@
 extend layouts/main
 
 block content
-  .container
-    h1.title Base gulp project
-    .img-container
-      img(src="./img/observatory-new-york.jpg")
+  .loader
+    a(href="#").switcher
+
+    .screen.glitch
+      .clock.is-off
+        span(data-time='10:40:01').time
+      .figure
+      .figure-mask
