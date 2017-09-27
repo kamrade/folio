@@ -1,16 +1,15 @@
 extend layouts/main
 
 block content
-  .loader
-    a(href="#").switcher
-
-    //- черный фон с полосками
-    .screen.glitch
-      
-      //- текст
-      .clock.is-off 
-        span(data-time='10:40:01').time 10:40:01
-      
-      //- треугольнички
-      .figure
-      .figure-mask
+  .app-content.overlap
+    .loader
+      a(href="#").switcher
+      //- черный фон с полосками
+      .screen.glitch
+        .text
+          span(data-message='Loading').message Loading
+          span.cursor
+          span.cursor-mask
+    .big-pictures
+      img(src="https://static.pexels.com/photos/34950/pexels-photo.jpg" alt="")
+  

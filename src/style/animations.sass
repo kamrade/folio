@@ -1,51 +1,30 @@
+@keyframes blinking
+  @for $i from 0 through 10
+    #{ $i*(1/2)*10%}
+      opacity: 1
+    90%
+      opacity: 0
+    100%
+      opacity: 1
+
+// @keyframes c1
+  @for $i from 0 through 20
+    #{ $i*(1/20)*10*10%}
+      clip: rect( random($glitch-height) + px, 9999px, random($glitch-height) + px, 0 )
+
 @keyframes c1
   @for $i from 0 through 20
-    #{ $i*(1/20)*10*10%}
-      clip: rect( random(100) + px, 9999px, random(100) + px, 0 )
+    #{ $i*(1/20)*10*10% }
+      clip: rect( random($glitch-height) + px, 9999px, random($glitch-height) + px, 0 )
 
-@keyframes c2
+// @keyframes c2
   @for $i from 0 through 20
     #{ $i*(1/20)*10*10%}
-      clip: rect( random(100) + px, 9999px, random(100) + px, 0 )
+      clip: rect( random($glitch-height) + px, 9999px, random($glitch-height) + px, 0 )
     23%
       transform: scale(.8)
 
-@keyframes is-off
-  0%
-    opacity: 1
-  50%
-    opacity: 1
-  56%
-    opacity: 0
-  57%
-    opacity: 0
-  58%
-    opacity: 1
-  71%
-    transform: scaleY(1) skewX(0deg)
-  72%
-    transform: scaleY(3) skewX(-60deg)
-  73%
-    transform: scaleY(1) skewX(0deg)
-  80%
-    opacity: 1
-  81%
-    opacity: 0
-  84%
-    opacity: 0
-  85%
-    opacity: 1
-  91%
-    transform: scaleX(1) scaleY(1) skewX(0deg)
-    color: $txt-color
-  92%
-    transform: scaleX(1.5) scaleY(.2) skewX(80deg)
-    color: green
-  93%
-    transform: scaleX(1) scaleY(1) skewX(0deg)
-    color: $txt-color
-
-@keyframes clock-bag
+@keyframes text-bag
   @for $i from 0 through 50
     #{ $i*(1/50)*10*10}%
       transform: translate(random(5) + px, random(5) + px)
@@ -62,22 +41,6 @@
     53%
       transform: scaleX(1) scaleY(1) skewX(0deg)
 
-@keyframes tr-bag
-  @for $i from 0 through 50
-    #{ $i*(1/50)*10*10}%
-      transform: translate(random(5) + px)
-    1%
-      transform: scaleY(1) skewX(0deg)
-    1.5%
-      transform: scaleY(3) skewX(-60deg)
-    2%
-      transform: scaleY(1) skewX(0deg)
-    51%
-      transform: scaleX(1) scaleY(1) skewX(0deg)
-    52%
-      transform: scaleX(1.5) scaleY(.2) skewX(80deg)
-    53%
-      transform: scaleX(1) scaleY(1) skewX(0deg)
 
 @keyframes bg-move
   0%

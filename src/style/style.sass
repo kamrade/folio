@@ -7,9 +7,19 @@
 @import 'animations'
 @import 'loader'
 
-.app
-  height: 100vh
+$text-animation-duration: 12s
+$bg-move-animation-duration: 2s
+
+$glitch-animation-duration-c2: 10s
+$glitch-animation-duration-c1: 12s
+
+.app-content
   position: relative
+
+  &.overlap
+    height: 100vh
+    width: 100vw
+    overflow: hidden
 
 .loader
   background-color: $bg-color
@@ -17,6 +27,11 @@
   height: 100%
   font-weight: 700
   font-family: 'Fira Mono', monospace
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
   *::before,
   *::after
     margin: 0
@@ -59,61 +74,13 @@
     height: 100%
     overflow: hidden
 
-  // треугольнички
-  .figure
-    display: block
-    position: absolute
-    z-index: 1
-    width: 0
-    height: 0
-    top: 0
-    right: 0
-    bottom: 0
-    left: 0
-    margin: auto
-    border-top: 200px solid $txt-color
-    border-right: 100px solid transparent
-    border-left: 100px solid transparent
-    border-bottom: 0 solid transparent
-    &::before
-      display: block
-      content: ''
-      position: absolute
-      z-index: 8
-      width: 0
-      height: 0
-      top: -194px
-      left: -90px
-      margin: auto
-      border-top: 180px solid $bg-color
-      border-right: 90px solid transparent
-      border-left: 90px solid transparent
-      border-bottom: 0 solid transparent
-
-  // маски для треугольничков
-  .figure-mask
-    display: block
-    position: absolute
-    z-index: 8
-    width: 0
-    height: 0
-    top: 0
-    right: 0
-    bottom: 0
-    left: 0
-    margin: auto
-    border-top: 200px solid transparent
-    border-right: 100px solid $bg-color
-    border-left: 100px solid $bg-color
-    border-bottom: 0 solid transparent
-
   // изначальное положение текста
-  .clock
+  .text
     display: block
     position: absolute
     z-index: 8
-    width: 720px
-    height: 128px
+    width: 100%
+    height: $glitch-height*2
     text-align: center
     top: 0
     right: 0
@@ -121,13 +88,40 @@
     left: 0
     margin: auto
     cursor: default
-    .time
+    span.message
       display: block
       position: relative
-      font-size: 128px
+      font-size: $glitch-height
+      font-weight: 300
+      text-transform: uppercase
+      letter-spacing: 4px
       line-height: 1
-    &.is-off
-      animation: is-off 2s linear infinite !important
+    span.cursor
+      display: block
+      margin: 24px auto
+      width: 0
+      height: 0
+      border-top: 24px solid yellow
+      border-right: 14px solid transparent
+      border-left: 14px solid transparent
+      border-bottom: 0 solid transparent
+      transform: scale(0.75) rotate(180deg)
+      animation: blinking 1s linear infinite
+
+      &::before
+        display: block
+        content: ''
+        position: absolute
+        z-index: 9
+        width:  0
+        height: 0
+        top: -21px
+        left: -8px
+        margin: auto
+        border-top:   14px solid $bg-color
+        border-right:  8px solid transparent
+        border-left:   8px solid transparent
+        border-bottom:    0 solid transparent
 
   // черный фон с полосками
   .glitch
@@ -139,37 +133,41 @@
       right: 0
       bottom: 0
       left: 0
-      animation: bg-move 2s linear infinite
+      animation: bg-move $bg-move-animation-duration linear infinite
       background-size: 100% 0.5rem
       background-image: linear-gradient(0, rgba(255,255,255,.05) 10%, transparent 10%, transparent 50%, rgba(255,255,255,.05) 50%, rgba(255,255,255,.05) 60%, transparent 60%, transparent)
 
-    .figure,
-    .figure-mask
+    .text
       transform: skewX(0deg) scaleY(1)
-      animation: tr-bag 4s linear infinite
-
-    .clock
-      transform: skewX(0deg) scaleY(1)
-      animation: clock-bag 4s linear infinite
-      .time
+      // animation: text-bag $text-animation-duration linear infinite
+      span.message
         &::before,
         &::after
           display: block
-          content: attr(data-time)
+          content: attr(data-message)
           position: absolute
-          // z-index: 8
+          z-index: 8
           top: 0
           color: $txt-color
           background-color: $bg-color
           overflow: hidden
-          width: 720px
-          height: 128px
+          width: 100%
+          height: $glitch-height*2
           clip: rect(0, 900px, 0, 0)
         &::before
           left: -($offset-c2) + px
           text-shadow: ($lay-c2) + px 0 $color-c2
-          animation: c2 1s infinite linear alternate-reverse
+          animation: c2 $glitch-animation-duration-c2 infinite linear alternate-reverse
         &::after
           left: ($offset-c1) + px
           text-shadow: -($lay-c1) + px 0 $color-c1
-          animation: c1 2s infinite linear alternate-reverse
+          animation: c1 $glitch-animation-duration-c1 infinite linear alternate-reverse
+
+.big-pictures
+  width: 100%
+  // position: relative
+  // z-index: 0
+  // img
+    display: block
+    width: 100%
+    position: relative
