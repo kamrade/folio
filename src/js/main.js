@@ -10,7 +10,14 @@ window.jQuery = $;
 // require('../../node_modules/bootstrap/dist/js/bootstrap');
 // let Handlebars = require('handlebars');
 window.onload = function() {
-  console.log("Loaded");
+  console.log("--- Loaded ---");
+  function second_passed() {
+    let clock = document.querySelector('.clock');
+    clock.classList.remove('is-off');
+  }
+
+  setTimeout(second_passed, 4000);
+
 }
 
 console.log("Basic Project");

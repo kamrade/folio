@@ -83,7 +83,7 @@
       width: 0
       height: 0
       top: -194px
-      left: -194px
+      left: -90px
       margin: auto
       border-top: 180px solid $bg-color
       border-right: 90px solid transparent
@@ -107,6 +107,7 @@
     border-left: 100px solid $bg-color
     border-bottom: 0 solid transparent
 
+  // изначальное положение текста
   .clock
     display: block
     position: absolute
@@ -128,6 +129,7 @@
     &.is-off
       animation: is-off 2s linear infinite !important
 
+  // черный фон с полосками
   .glitch
     &:before
       position: absolute
@@ -140,10 +142,12 @@
       animation: bg-move 2s linear infinite
       background-size: 100% 0.5rem
       background-image: linear-gradient(0, rgba(255,255,255,.05) 10%, transparent 10%, transparent 50%, rgba(255,255,255,.05) 50%, rgba(255,255,255,.05) 60%, transparent 60%, transparent)
+
     .figure,
     .figure-mask
       transform: skewX(0deg) scaleY(1)
       animation: tr-bag 4s linear infinite
+
     .clock
       transform: skewX(0deg) scaleY(1)
       animation: clock-bag 4s linear infinite
@@ -164,8 +168,8 @@
         &::before
           left: -($offset-c2) + px
           text-shadow: ($lay-c2) + px 0 $color-c2
-          animation: c2 1s linear infinite alternate-reverse
+          animation: c2 1s infinite linear alternate-reverse
         &::after
           left: ($offset-c1) + px
           text-shadow: -($lay-c1) + px 0 $color-c1
-          animation: c1 2s linear infinite alternate-reverse
+          animation: c1 2s infinite linear alternate-reverse
